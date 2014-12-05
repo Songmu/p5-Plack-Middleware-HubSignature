@@ -2,5 +2,7 @@ Revision history for Perl extension Plack-Middleware-HubSignature
 
 {{$NEXT}}
 
+0.01 2014-12-05T14:45:57Z
+
     - original version
 

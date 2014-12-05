@@ -1,14 +1,26 @@
 # NAME
 
-Plack::Middleware::HubSignature - It's new $module
+Plack::Middleware::HubSignature - Validating payloads from GitHub
 
 # SYNOPSIS
 
-    use Plack::Middleware::HubSignature;
+    use Plack::Builder;
+    my $app = sub { ... };
+    builder {
+        enable "Plack::Middleware::HubSignature",
+            secret => 'YOUR SECRET';
+        $app;
+    };
 
 # DESCRIPTION
 
-Plack::Middleware::HubSignature is ...
+Plack::Middleware::HubSignature is for validating payloads from GitHub Webhooks.
+
+# CONFIGURATION
+
+## `secret`
+
+Secret token set at github Webhook setting. See [https://developer.github.com/webhooks/securing/](https://developer.github.com/webhooks/securing/) for more details.
 
 # LICENSE
 

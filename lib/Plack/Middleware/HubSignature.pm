@@ -53,7 +53,7 @@ Plack::Middleware::HubSignature is for validating payloads from GitHub Webhooks.
 
 =head2 C<secret>
 
-Secret token set at github webhook setting. See L<https://developer.github.com/webhooks/securing/> for more details.
+Secret token set at github Webhook setting. See L<https://developer.github.com/webhooks/securing/> for more details.
 
 =head1 LICENSE
 
