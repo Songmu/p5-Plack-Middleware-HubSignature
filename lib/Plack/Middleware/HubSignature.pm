@@ -3,7 +3,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 use parent 'Plack::Middleware';
 use Plack::Util;
@@ -53,7 +53,12 @@ Plack::Middleware::HubSignature is for validating payloads from GitHub Webhooks.
 
 =head2 C<secret>
 
-Secret token set at github Webhook setting. See L<https://developer.github.com/webhooks/securing/> for more details.
+Secret token set at GitHub Webhook setting. See L<https://developer.github.com/webhooks/securing/> for more details.
+
+=head1 SEE ALSO
+
+See L<Github::Hooks::Receiver> and L<Plack::App::GitHub::WebHook> for apps to
+receive GitHub Webhooks.
 
 =head1 LICENSE
 
@@ -66,5 +71,8 @@ it under the same terms as Perl itself.
 
 Songmu E<lt>y.songmu@gmail.comE<gt>
 
-=cut
+=head1 CONTRIBUTORS
 
+Jakob Voß E<lt>jako.voss@gbv.deE<gt>
+
+=cut
