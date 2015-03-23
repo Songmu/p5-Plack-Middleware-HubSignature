@@ -27,14 +27,15 @@ test_psgi $app => sub {
     ], 'X-GitHub-Event' => 'hoge';
 
     $res = $cb->($req);
-    is $res->content, 'BAD REQUEST';
+    is $res->content, 'Forbidden';
+    is $res->code, 403;
 
     $req = POST '/', [
         payload => '{"hoge":"fuga"}',
     ], 'X-GitHub-Event' => 'hoge', 'X-Hub-Signature' => 'invalid signature';
 
     $res = $cb->($req);
-    is $res->content, 'BAD REQUEST';
+    is $res->content, 'Forbidden';
 };
 
 done_testing;

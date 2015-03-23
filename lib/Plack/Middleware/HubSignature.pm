@@ -20,7 +20,7 @@ sub call {
     my $expected = 'sha1=' . Digest::SHA::hmac_sha1_hex($req->content, $self->secret);
     my $actual = $req->header('X-Hub-Signature') || '';
     if (!String::Compare::ConstantTime::equals($expected, $actual)) {
-        return [400, ['Content-Type' => 'text/plain'], ['BAD REQUEST'] ];
+        return [403, ['Content-Type' => 'text/plain', 'Content-Length' => 9], ['Forbidden'] ];
     }
 
     $self->app->($env);
