@@ -3,7 +3,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 use parent 'Plack::Middleware';
 use Plack::Util;
@@ -20,7 +20,7 @@ sub call {
     my $expected = 'sha1=' . Digest::SHA::hmac_sha1_hex($req->content, $self->secret);
     my $actual = $req->header('X-Hub-Signature') || '';
     if (!String::Compare::ConstantTime::equals($expected, $actual)) {
-        return [400, ['Content-Type' => 'text/plain'], ['BAD REQUEST'] ];
+        return [403, ['Content-Type' => 'text/plain', 'Content-Length' => 9], ['Forbidden'] ];
     }
 
     $self->app->($env);
@@ -53,7 +53,12 @@ Plack::Middleware::HubSignature is for validating payloads from GitHub Webhooks.
 
 =head2 C<secret>
 
-Secret token set at github Webhook setting. See L<https://developer.github.com/webhooks/securing/> for more details.
+Secret token set at GitHub Webhook setting. See L<https://developer.github.com/webhooks/securing/> for more details.
+
+=head1 SEE ALSO
+
+See L<Github::Hooks::Receiver> and L<Plack::App::GitHub::WebHook> for apps to
+receive GitHub Webhooks.
 
 =head1 LICENSE
 
@@ -66,5 +71,8 @@ it under the same terms as Perl itself.
 
 Songmu E<lt>y.songmu@gmail.comE<gt>
 
-=cut
+=head1 CONTRIBUTORS
 
+Jakob Voß E<lt>jako.voss@gbv.deE<gt>
+
+=cut
